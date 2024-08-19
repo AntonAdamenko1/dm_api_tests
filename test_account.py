@@ -1,13 +1,15 @@
 import requests
 import json
 import pytest
+from faker import Faker
 
 @pytest.fixture()
 def generate_user():
+    fake=Faker('ru_RU') #будут сгенирированы русские пользователи
     return {
-      "login": "login123456791",
-      "email": "login1234567891@mail.ru",
-      "password": "login1234567891"
+      "login": fake.user_name(),
+      "email": fake.email(),
+      "password": fake.password()
     }
 @pytest.fixture()
 def set_url():
@@ -21,9 +23,6 @@ def headers():
     }
 
 def test_post_v1_account(set_url, headers, generate_user):
-    response = requests.request("POST", set_url, headers=headers, json=generate_user)
-    print(response.text)
-
-def test_post_v1_account2(set_url, headers, generate_user):
+    print(generate_user)
     response = requests.request("POST", set_url, headers=headers, json=generate_user)
     print(response.text)
