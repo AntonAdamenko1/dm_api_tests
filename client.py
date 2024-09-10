@@ -11,10 +11,22 @@ class Client:
 
     def register_user(self,json):
         path=self.host+'/v1/account'
+        # в объекте response содержится информация для лога
         response = requests.request(
             "POST",
             url=path,
             headers=self.headers,
             json=json
         )
+        #логирование
+        log=f"""
+        REQUEST:
+            URL: {response.request.url}
+            METHOD: {response.request.method}
+            JSON: {response.request.body}
+        RESPONSE:
+            STATUS_CODE: {response.status_code}
+            CONTENT: {response.content}
+        """
+        print(log)
         return response

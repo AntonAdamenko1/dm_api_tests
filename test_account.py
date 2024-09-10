@@ -40,6 +40,4 @@ data=[
 
 @pytest.mark.parametrize('data',data)
 def test_post_v1_account(data,client):
-    print(data)
     response=client.register_user(data)
-    print(response.text)
