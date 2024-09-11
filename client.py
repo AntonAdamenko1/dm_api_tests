@@ -18,7 +18,7 @@ class Client:
             headers=self.headers,
             json=json
         )
-        #логирование
+        #логгирование
         log=f"""
         REQUEST:
             URL: {response.request.url}

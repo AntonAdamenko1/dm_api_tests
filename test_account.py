@@ -41,3 +41,4 @@ data=[
 @pytest.mark.parametrize('data',data)
 def test_post_v1_account(data,client):
     response=client.register_user(data)
+    assert response.status_code == 400, "Статус код ответа сервера должен быть 400"
